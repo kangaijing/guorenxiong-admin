@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 头部公共文件 -->
+	<{include file='public/tohead.html'}>
+	
+	<title>管理员列表</title>
+	
+	<style>
+		
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<ul class="nav nav-tabs top15">
+		<li class="active"><a href="/users/index">管理员列表</a></li>
+		<li><a href="/users/add">添加管理员</a></li>
+	</ul>
+	<table id="managers" class="table table-bordered table-hover top15">
+		<tr style="background-color: #EEE;">
+			<th>id</th>
+			<th>用户名</th>
+			<th>最后登陆 IP</th>
+			<th>最后登陆时间</th>
+			<th>登陆次数</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+		<{foreach from=$lists key=key item=val}>
+		<tr>
+			<td><{$val.id}></td>
+			<td>
+				<{$val.username}>
+			</td>
+			<td><{$val.login_ip}></td>
+			<td><{$val.time_login}></td>
+			<td><{$val.login_count}></td>
+			<td>
+				<{if $val.status}>
+					<div class="btn btn-success btn-xs <{if $val.id== 1}><{else}>btn-editstatus<{/if}>" username="<{$val.username}>"  url="/users/editstatus" uid="<{$val.id}>" acts="禁用">已启用</div>
+				<{else}>
+					<div class="btn btn-default btn-xs <{if $val.id== 1}><{else}>btn-editstatus<{/if}>" username="<{$val.username}>"  url="/users/editstatus" uid="<{$val.id}>" acts="启用">已禁用</div>
+				<{/if}>
+			</td>
+			<td>
+				<{if $val.id==1}>
+					<div class="btn btn-default btn-xs">编辑</div>
+				<{else}>
+					<a class="btn btn-danger btn-xs btn-repasswd" username="<{$val.username}>"  url="/users/repasswd" uid="<{$val.id}>">重置密码</a>
+					<a href="/users/edit?id=<{$val.id}>" class="btn btn-warning btn-xs left10">编辑</a>
+				<{/if}>
+			</td>
+		</tr>
+		<{/foreach}>
+		<tr style="background-color: #EEE;">
+			<th>id</th>
+			<th>用户名</th>
+			<th>最后登陆 IP</th>
+			<th>最后登陆时间</th>
+			<th>登陆次数</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</table>
+</div>
+
+<!-- 底部公共文件 -->
+<{include file='public/footer.html'}>
+<!-- 本页独立 js 在此处下方 -->
+<script>
+$(document).ready(function(){
+	// 重置密码
+	$('#managers .btn-repasswd').on('click', function(){
+		var url = $(this).attr('url');
+		var uid = $(this).attr('uid');
+		var username = $(this).attr('username');
+		var pass = '';
+		username = '<a style="color:red;">' + username + '</a>';
+		
+		layer.confirm('您确认要重置用户 ' + username + ' 的密码吗？', function(){
+			var pass_index = layer.prompt({ // 定义弹窗层
+				title: '请输入新密码',
+				formType: 1 //prompt风格，支持0-2
+			}, function(pass){
+				// 定义 loading 层
+				var loading_index = layer.load(0, {shade: [0.1,'#FFF']});
+				$.post(url, {id:uid,passwd:pass}, function(data){
+					layer.close(loading_index); // 关闭 loading 层
+					if(data.status == 1){
+						layer.msg(data.info, {icon:1, time:1000}, function(){
+							layer.close(pass_index); // 关闭弹窗层
+						});
+					}else{
+						layer.msg(data.info, {icon:5, time:1000})
+					}
+				});
+			});
+		});
+	});
+	// 编辑状态
+	$('#managers .btn-editstatus').on('click', function(){
+		var url = $(this).attr('url');
+		var uid = $(this).attr('uid');
+		var username = $(this).attr('username');
+		var acts = $(this).attr('acts');
+		username = '<a style="color:red;">' + username + '</a>';
+		
+		layer.confirm('您确认要 ' + acts + ' 用户 ' + username + ' 吗？', function(){
+			// 定义 loading 层
+			var loading_index = layer.load(0, {shade: [0.1,'#FFF']});
+			$.post(url, {id:uid}, function(data){
+				layer.close(loading_index); // 关闭 loading 层
+				if(data.status == 1){
+					layer.msg(data.info, {icon:1, time:1000}, function(){
+						window.location.href = window.location.href;
+					});
+				}else{
+					layer.msg(data.info, {icon:5, time:1000})
+				}
+			});
+		});
+	});
+	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 头部公共文件 -->
+	<{include file='public/tohead.html'}>
+	
+	<title>角色管理</title>
+	
+	<style>
+		
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<ul class="nav nav-tabs top15">
+		<li class="active"><a href="/rbac/index">角色列表</a></li>
+		<li><a href="/rbac/add">添加角色</a></li>
+	</ul>
+	<table id="managers" class="table table-bordered table-hover top15">
+		<tr style="background-color: #EEE;">
+			<th>id</th>
+			<th>角色名称</th>
+			<th>备注</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+		<{foreach from=$lists key=key item=val}>
+		<tr>
+			<td><{$val.id}></td>
+			<td><{$val.name}></td>
+			<td><{$val.remark}></td>
+			<td>
+				<{if $val.status}>
+					<div class="btn btn-success btn-xs">已启用</div>
+				<{else}>
+					<div class="btn btn-default btn-xs">未启用</div>
+				<{/if}>
+			</td>
+			<td>
+				<{if $val.id== 1}>
+					<div class="btn btn-default btn-xs">编辑</div>
+					<div class="btn btn-default btn-xs">权限设置</div>
+				<{else}>
+					<a class="btn btn-danger btn-xs btn-delete" username="<{$val.username}>" url="/rbac/delete" rid="<{$val.id}>">删除</a>
+					
+					<a class="btn btn-warning btn-xs left10 btn-chkrole" url="/rbac/authorize?id=<{$val.id}>">权限设置</a>
+					<a href="/rbac/edit?id=<{$val.id}>" class="btn btn-primary btn-xs left10">编辑</a>
+					<a url="/rbac/edit?id=<{$val.id}>" class="btn btn-info btn-xs left10">组成员</a>
+				<{/if}>
+			</td>
+		</tr>
+		<{/foreach}>
+		<tr style="background-color: #EEE;">
+			<th>id</th>
+			<th>角色名称</th>
+			<th>备注</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</table>
+</div>
+
+<!-- 底部公共文件 -->
+<{include file='public/footer.html'}>
+<!-- 本页独立 js 在此处下方 -->
+<script>
+$(document).ready(function(){
+	// 弹窗 权限设置
+	$('.btn-chkrole').on('click', function(){
+		var url = $(this).attr('url');
+		layer.open({
+			type: 2,
+			title: '权限设置',
+			shadeClose: false,
+			shade: 0.1,
+			area: ['90%', '90%'],
+			content: url
+		});
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 头部公共文件 -->
+	<{include file='public/tohead.html'}>
+	
+	<link rel="stylesheet" href="/js/treeTable/treeTable.css" />
+	<title>后台菜单列表</title>
+	
+	<style>
+		.treeTable tr td .expander { margin-left: 0px; }
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<ul class="nav nav-tabs top15">
+		<li class="active"><a href="/menu/index">后台菜单列表</a></li>
+		<li><a href="/menu/add">添加菜单</a></li>
+	</ul>
+	<table class="table table-bordered table-hover table-list treeTable top15" id="menus-table">
+		<thead>
+			<tr style="background-color: #EEE;">
+				<th width="5%"></th>
+				<th>ID</th>
+				<th>菜单名称</th>
+				<th>url 路径</th>
+				<th>上级菜单</th>
+				<th>层级关系</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<{foreach from=$lists key=key item=val}>
+				<tr id="node-<{$val.id}>" class="<{$val.pnode}>">
+					<td></td>
+					<td><{$val.id}></td>
+					<td><{$val.name}></td>
+					<td><{$val.url}></td>
+					<td><{$val.pid}></td>
+					<td><{$val.path}></td>
+					<td>
+						<a url="/menu/delete" mid="<{$val.id}>" class="btn btn-danger btn-xs">删除</a>
+						<a href="/menu/edit?id=<{$val.id}>" class="btn btn-warning btn-xs left10">编辑</a>
+					</td>
+				</tr>
+			<{/foreach}>
+		</tbody>
+		<tfoot>
+			<tr style="background-color: #EEE;">
+				<th width="5%"></th>
+				<th>ID</th>
+				<th>菜单名称</th>
+				<th>url 路径</th>
+				<th>上级菜单</th>
+				<th>层级关系</th>
+				<th>操作</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<!-- 底部公共文件 -->
+<{include file='public/footer.html'}>
+<!-- 本页独立 js 在此处下方 -->
+<script src="/js/treeTable/treeTable.js"></script>
+<script>
+$(document).ready(function(){
+	// 树形菜单伸缩
+	$("#menus-table").treeTable({
+		indent : 20
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>跳转提示</title>
+	
+	<style>
+		* { margin: 0 auto; padding: 0px; }
+		body { background: #fff; font-family: "Microsoft YaHei"; }
+		a,a:link,a:hover,a:visited { text-decoration: none; cursor: pointer; }
+		.top50 { margin-top: 50px; }
+		.cleardiv { width: 100%; clear: both; }
+		.info-box { width: 450px; }
+		.info-top { height: 200px; border: 1px solid #DDD; border-radius: 4px; }
+		.info-box img { float: left; width: 200px; height: 200px; }
+		.info-box .info-title {
+			float: left;
+			width: 220px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+			font-size: 20px;
+			font-weight: bold;
+			color: #339999;
+		}
+		.info-box .return-url { padding: 15px; text-align: center; }
+		#href { color: #339999; }
+	</style>
+</head>
+<body>
+<div class="info-box top50">
+	<div class="info-top">
+		<img src="/images/notfound1.gif" />
+		<div class="info-title">
+			<?php echo $errmsg; ?>
+		</div>
+	</div>
+	<div class="cleardiv"></div>
+	<div class="return-url">
+		页面将在 <span id="wait">3</span> 秒 后 <a id="href" href="<?php echo $reurl; ?>" target="_self">跳转</a>
+	</div>
+</div>
+
+<script>
+(function(){
+	var wait = document.getElementById('wait');
+	var href = document.getElementById('href').href;
+	var interval = setInterval(function(){
+		var time = --wait.innerHTML;
+		if(time <= 0) {
+			window.location.href = href;
+			clearInterval(interval);
+		};
+	}, 1000);
+})();
+</script>
+</body>
+</html>

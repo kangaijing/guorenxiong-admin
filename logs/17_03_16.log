@@ -1,0 +1,48 @@
+[2017-03-16T10:45:59+08:00] 192.168.33.1 /Article/
+Failed opening controller script /var/www/jdetyy/application/controllers/Article.php: No such file or directory
+[2017-03-16T10:50:46+08:00] 192.168.33.1 /Article/news
+Failed opening controller script /var/www/jdetyy/application/controllers/Article.php: No such file or directory
+[2017-03-16T10:51:12+08:00] 192.168.33.1 /Article/news
+Failed opening controller script /var/www/jdetyy/application/controllers/Article.php: No such file or directory
+[2017-03-16T11:17:10+08:00] 192.168.33.1 /article/add
+There is no method addAction in ArticleController
+[2017-03-16T11:17:50+08:00] 192.168.33.1 /article/newsadd
+There is no method newsaddAction in ArticleController
+[2017-03-16T11:39:00+08:00] 192.168.33.1 /js/ueditor/php/controller.php?action=config&&noCache=1489635941300
+Failed opening controller script /var/www/jdetyy/application/controllers/Js.php: No such file or directory
+[2017-03-16T11:39:04+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:47:48+08:00] 192.168.33.1 /ueditor/controller.php
+There is no method controller.phpAction in UeditorController
+[2017-03-16T11:48:44+08:00] 192.168.33.1 /ueditor/doupload.php
+There is no method doupload.phpAction in UeditorController
+[2017-03-16T11:49:40+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:49:44+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:49:45+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:50:47+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:50:47+08:00] 192.168.33.1 /article/undefinedlang/zh-cn/zh-cn.js
+There is no method undefinedlangAction in ArticleController
+[2017-03-16T11:50:47+08:00] 192.168.33.1 /article/undefinedthemes/default/css/ueditor.css
+There is no method undefinedthemesAction in ArticleController
+[2017-03-16T11:51:09+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:51:09+08:00] 192.168.33.1 /article/undefinedlang/zh-cn/zh-cn.js
+There is no method undefinedlangAction in ArticleController
+[2017-03-16T11:51:09+08:00] 192.168.33.1 /article/undefinedthemes/default/css/ueditor.css
+There is no method undefinedthemesAction in ArticleController
+[2017-03-16T11:51:32+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:51:37+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:52:32+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:53:43+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:53:58+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory
+[2017-03-16T11:53:59+08:00] 192.168.33.1 /bootstrap/css/bootstrap.min.css.map
+Failed opening controller script /var/www/jdetyy/application/controllers/Bootstrap.php: No such file or directory

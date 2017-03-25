@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<!-- 头部公共文件 -->
+	<{include file='public/tohead.html'}>
+	
+	<title>添加管理员</title>
+	
+	<style>
+		
+	</style>
+</head>
+<body>
+<div class="container-fluid">
+	<ul class="nav nav-tabs top15">
+		<li><a href="/users/index" class="index-url">管理员列表</a></li>
+		<li class="active"><a href="/users/add">添加管理员</a></li>
+	</ul>
+	<form class="form-horizontal top20" name="dataForm" action="/users/addsave">
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><span class="must-red">*</span> 用户名</label>
+			<div class="col-sm-10">
+				<input type="text" name="name" class="form-control width400" placeholder="请输入用户名" />
+				<span class="help-block">用户名用于登陆，限英文字符</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">昵称</label>
+			<div class="col-sm-10">
+				<input type="text" name="nickname" class="form-control width400" placeholder="请输入昵称" />
+				<span class="help-block">昵称用于显示，可以是中文姓名</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><span class="must-red">*</span> 密码</label>
+			<div class="col-sm-10">
+				<input type="text" name="password" class="form-control width400" placeholder="请输入密码" />
+				<span class="help-block">密码长度不能小于 6 位字符长度</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"><span class="must-red">*</span> 角色分配</label>
+			<div class="col-sm-10">
+				<div style="width:600px;">
+					<{$rolelists}>
+				</div>
+			</div>
+		</div>
+		<div class="form-group top30">
+			<div class="col-sm-offset-2 col-sm-10">
+				<a class="btn btn-primary btn-save">保 存</a>
+				<a class="btn btn-default left20 btn-cancel">返 回</a>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- 底部公共文件 -->
+<{include file='public/footer.html'}>
+<!-- 本页独立 js 在此处下方 -->
+</body>
+</html>

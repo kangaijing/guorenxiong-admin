@@ -1,0 +1,249 @@
+<?php /* Smarty version 2.6.30, created on 2017-03-16 10:21:14
+         compiled from index/index.html */ ?>
+<!DOCTYPE html>
+<html lang="zh_CN" style="overflow: hidden;">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+	<title>后台管理中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="/css/theme.min.css" rel="stylesheet" />
+	<link href="/css/simplebootadmin.css" rel="stylesheet" />
+	<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="/css/simplebootadminindex.min.css" rel="stylesheet" />
+	<link href="/favicon.ico" rel="shortcut icon" />
+	
+	<style>
+		.navbar .nav_shortcuts .btn {margin-top: 5px;}
+		.macro-component-tabitem {width:101px;}
+		
+		/*-----------------导航hack--------------------*/
+		.nav-list>li.open{position: relative;}
+		.nav-list>li.open .back {display: none;}
+		.nav-list>li.open .normal {display: inline-block !important;}
+		.nav-list>li.open a {padding-left: 7px;}
+		.nav-list>li .submenu>li>a {background: #fff;}
+		.nav-list>li .submenu>li a>[class*="fa-"]:first-child{left:20px;}
+		.nav-list>li ul.submenu ul.submenu>li a>[class*="fa-"]:first-child{left:30px;}
+		/*----------------导航hack--------------------*/
+		
+		.cleardiv { width: 100%; clear: both; }
+	</style>
+	<script>
+		// 判断是否在 iframe 中，如果是，则刷新父页面
+		if(self.frameElement && self.frameElement.tagName == "IFRAME"){
+			parent.location.reload();
+		}
+	</script>
+</head>
+<body style="min-width:900px;" screen_capture_injected="true">
+<div id="loading"><i class="loadingicon"></i><span>加载中……</span></div>
+<div id="right_tools_wrapper">
+	<span id="refresh_wrapper" title="刷新当前选中标签页" ><i class="fa fa-refresh right_tool_icon"></i></span>
+</div>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container-fluid">
+			<a href="/" class="brand"> <small> 
+				后台管理中心
+			</small>
+			</a>
+			<div class="pull-left nav_shortcuts">
+				<a class="btn btn-small btn-warning" href="/" title="前台首页" target="_blank">
+					<i class="fa fa-home"></i>
+				</a>
+			</div>
+			<ul class="nav simplewind-nav pull-right" style="margin-right: -20px;">
+				<li class="light-blue" style="color: #FFF;">
+					<i class="fa fa-clock-o"></i> <span id="sysclock"></span>
+				</li>
+				<li class="light-blue" style="margin-left: 30px;">
+					<span class="user-info" style="color: #FFF;">
+						欢迎您：<i class="fa fa-user"></i> <?php echo $this->_tpl_vars['username']; ?>
+
+					</span>
+				</li>
+				<li class="light-blue" style="margin-left: 30px;">
+					<a class="btn-editpass" url="/public/logout" style="cursor: pointer;">
+						<i class="fa fa-pencil-square-o"></i> 修改密码
+					</a>
+				</li>
+				<li class="light-blue" style="margin-left: 30px;">
+					<a class="btn-logout" url="/public/logout" title="注销" style="cursor: pointer;">
+						<i class="fa fa-sign-out"></i> 注销
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="main-container container-fluid">
+	<div class="sidebar" id="sidebar">
+		<!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">菜单栏</div>-->
+		<div id="nav_wraper">
+			<ul class="nav nav-list">
+				<?php echo $this->_tpl_vars['menulists']; ?>
+
+			</ul>
+		</div>
+	</div>
+	<div class="main-content">
+		<div class="breadcrumbs" id="breadcrumbs">
+			<a id="task-pre" class="task-changebt">←</a>
+			<div id="task-content">
+				<ul class="macro-component-tab" id="task-content-inner">
+					<li class="macro-component-tabitem noclose" app-id="0" app-url="/main/index" app-name="首页">
+						<span class="macro-tabs-item-text">首页</span>
+					</li>
+				</ul>
+				<div style="clear:both;"></div>
+			</div>
+			<a id="task-next" class="task-changebt">→</a>
+		</div>
+		<div class="page-content" id="content">
+			<iframe src="/main/index" style="width:100%;height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>
+		</div>
+	</div>
+</div>
+
+<!-- 修改密码弹窗 -->
+<div id="edit_pass_box" style="margin: 0 auto; width: 400px; height: 200px; display: none;">
+	<form name="passwdForm" action="/myinfo/repasswd" class="form-horizontal" style="margin-top: 20px;">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" style="width: 120px; text-align: center;">原密码</label>
+			<div class="col-sm-10">
+				<input type="password" name="oldpasswd" maxlength="20" class="form-control" placeholder="请输入原密码" />
+			</div>
+		</div>
+		<div class="cleardiv"></div>
+		<div class="form-group" style="margin-top: 15px;">
+			<label class="col-sm-2 control-label" style="width: 120px; text-align: center;">新密码</label>
+			<div class="col-sm-10">
+				<input type="password" name="newpasswd" maxlength="20" class="form-control" placeholder="请输入新密码" />
+			</div>
+		</div>
+		<div class="cleardiv"></div>
+		<div class="form-group" style="margin-top: 15px;">
+			<label class="col-sm-2 control-label" style="width: 120px; text-align: center;">确认密码</label>
+			<div class="col-sm-10">
+				<input type="password" name="renewpasswd" maxlength="20" class="form-control" placeholder="请再次输入新密码" />
+			</div>
+		</div>
+		<div class="cleardiv"></div>
+		<div class="form-group" style="margin-top: 20px; text-align: center;">
+			<div class="btn btn-primary btn-subpasswd" style="">提 交</div>
+		</div>
+	</form>
+</div>
+
+<script src="/js/jquery-1.8.0.js"></script>
+<script src="/js/mgbootstrap.min.js"></script>
+<script src="/js/layer/layer.js"></script>
+<script src="/js/timeformats.js"></script>
+<script>
+$(document).ready(function(){
+	// 时钟
+	var stime = "<?php echo $this->_tpl_vars['systime']; ?>
+"; 	// 服务器时间
+	setInterval(function() { 	// 走秒
+		stime++;
+		var Otime = new Date(parseInt(stime) * 1000); 	// 转为毫秒
+		$('#sysclock').html(Otime.pattern('yyyy-MM-dd HH:mm:ss EEE'));
+	}, 1000);
+	
+	// 左侧菜单收缩
+	var ismenumin = $("#sidebar").hasClass("menu-min");
+	$(".nav-list").on( "click",function(event){
+		var closest_a = $(event.target).closest("a");
+		if(!closest_a || closest_a.length == 0){
+			return ;
+		}
+		if(!closest_a.hasClass("dropdown-toggle")){
+			if(ismenumin && "click" == "tap" && closest_a.get(0).parentNode.parentNode == this){
+				var closest_a_menu_text = closest_a.find(".menu-text").get(0);
+				if(event.target != closest_a_menu_text && !$.contains(closest_a_menu_text, event.target)){
+					return false;
+				}
+			}
+			return ;
+		}
+		var closest_a_next = closest_a.next().get(0);
+		if(!$(closest_a_next).is(":visible")){
+			var closest_ul = $(closest_a_next.parentNode).closest("ul");
+			if(ismenumin && closest_ul.hasClass("nav-list")){
+				return ;
+			}
+			closest_ul.find("> .open > .submenu").each(function(){
+				if(this != closest_a_next && !$(this.parentNode).hasClass("active")){
+					$(this).slideUp(150).parent().removeClass("open");
+				}
+			});
+		}
+		if(ismenumin && $(closest_a_next.parentNode.parentNode).hasClass("nav-list")){
+			return false;
+		}
+		$(closest_a_next).slideToggle(150).parent().toggleClass("open");
+		return false;
+	});
+	
+	// 注销
+	$('.btn-logout').on('click', function(){
+		var urls = $(this).attr('url');
+		var title = $(this).attr('title');
+		title = '您要离开了吗？';
+		layer.confirm(title, function(index){
+			$.post(urls, {}, function(data){
+				if(data.status == 1){
+					layer.msg(data.info, {icon:1, time:2000}, function(){
+						window.location.href = data.url;
+					});
+				}
+			});
+		});
+	});
+	
+	// 修改密码
+	$('.btn-editpass').on('click', function(){
+		$('form[name="passwdForm"] input[name="oldpasswd"]').val('');
+		$('form[name="passwdForm"] input[name="newpasswd"]').val('');
+		$('form[name="passwdForm"] input[name="renewpasswd"]').val('');
+		layer.open({
+			type: 1,
+			title: '修改密码',
+			shadeClose: false,
+			shade: 0.1,
+			area: ['auto', 'auto'],
+			content: $('#edit_pass_box')
+		});
+	});
+	
+	// 提交修改密码
+	$('#edit_pass_box').on('click', '.btn-subpasswd', function(){
+		var url = $('form[name="passwdForm"]').attr('action');
+		var formData = $('form[name="passwdForm"]').serialize();
+		
+		$.post(url, formData, function(data){
+			if(data.status == 1){
+				$('form[name="passwdForm"] input[name="oldpasswd"]').val('');
+				$('form[name="passwdForm"] input[name="newpasswd"]').val('');
+				$('form[name="passwdForm"] input[name="renewpasswd"]').val('');
+				layer.msg(data.info, {icon:1, time:1000}, function(){
+					window.location.href = data.url;
+				});
+			}else{
+				layer.msg(data.info, {icon:5, time:1000}, function(){
+					if(data.refresh == 1){
+						window.location.href = data.url;
+					}
+				});
+			}
+		});
+	});
+	
+});
+</script>
+<script src="/js/index.js"></script>
+</body>
+</html>
