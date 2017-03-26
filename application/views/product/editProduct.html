@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <!-- 头部公共文件 -->
+    <{include file='public/tohead.html'}>
+
+    <title>编辑分类</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <ul class="nav nav-tabs top15">
+        <li><a href="/product/productList" class="index-url">分类列表</a></li>
+        <li class="active"><a href="/product/addProduct">编辑分类</a></li>
+    </ul>
+    <form class="form-horizontal top20" name="dataForm" action="/product/addsave">
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="must-red">*</span> 分类名称</label>
+            <div class="col-sm-10">
+                <input type="text" name="name" value="<{$row.cname}>" class="form-control width400" placeholder="请输入分类名称" />
+                <!--<span class="help-block">用户名用于登陆，限英文字符</span>-->
+            </div>
+        </div>
+        <input type="hidden" name="id" value="<{$row.id}>" >
+        <div class="form-group">
+            <label class="col-sm-2 control-label">权&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重</label>
+            <div class="col-sm-10">
+                <input type="text" name="kg" value="<{$row.kg}>" class="form-control width400" placeholder="请输入权重" />
+                <!--<span class="help-block">昵称用于显示，可以是中文姓名</span>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"><span class="must-red">*</span> 上传图片</label>
+            <div class="col-sm-10">
+                <button id="pic_cut" class="btn btn-info btn_empty btn-sm " data-toggle="modal"  type="button">上传图片</button>
+                <!--<span class="help-block">密码长度不能小于 6 位字符长度</span>-->
+            </div>
+        </div>
+        <div class="form-group top30">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a class="btn btn-primary btn-save">保 存</a>
+                <a class="btn btn-default left20 btn-cancel">返 回</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 底部公共文件 -->
+<{include file='public/footer.html'}>
+<!-- 本页独立 js 在此处下方 -->
+<!--<script type="text/javascript">-->
+    <!--$("#pic_cut").click(function(){-->
+        <!--remoteUrl(basePath+'/ajax-tpl?act=pic_cut').done(function () {-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
+</body>
+</html>

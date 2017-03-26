@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="/css/pic_cut.css"/>
+<div class="modal-header" data-role="captain">
+    <button class="close" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+    选择图片
+</div>
+
+<div class="row">
+    <div class="col-lg-107 col-md-107 panel-body" style="margin-left: 10%">
+        <div class="container_box">
+            <div class="imageBox">
+                <div class="thumbBox"></div>
+                <div class="spinner" style="display: none">Loading...</div>
+            </div>
+            <div class="action">
+                <div class="new-contentarea tc"><a href="javascript:void(0)" class="upload-img">
+                        <label for="upload-file">上传图片</label>
+                    </a>
+                    <input type="file" class="" name="upload-file" id="upload-file"/>
+                </div>
+                <input type="button" id="btnCrop" class="Btnsty_peyton"   value="裁剪">
+                <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="放大">
+                <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="缩小">
+            </div>
+            <div class="cropped">图片预览区</div>
+            <div class="cropped_tips">
+                <p>支持jpg、png、bmp、gif图片文件，文件小于2M</p>
+                <input type="button" id="pic_submit" class="cropped_tips_btn" value="确定">
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script src="/plugins/cropbox.js"></script>-->
+<script>
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '/images/avatar.png'
+        };
+        var cropper = $('.imageBox').cropbox(options);
+        $('#upload-file').on('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                options.imgSrc = e.target.result;
+                cropper = $('.imageBox').cropbox(options);
+            };
+            var fileSize =  this.files[0].size;
+            if(fileSize>2*1024*1024){
+                alert("您上传的图片过大，请选择小于2M的图片!")
+            }else{
+                $("#btnCrop").data("bd","1");
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        $('#btnCrop').on('click', function () {
+            if($("#btnCrop").data("bd")=="1"){
+                var img = cropper.getDataURL();
+                $('.cropped').html('');
+                $('.cropped').append('<img  id="img_submit" src="' + img + '" align="absmiddle" style="width:120px;margin-top:4px;border-radius:120px;box-shadow:0px 0px 12px #7E7E7E;">');
+            }else{
+                alert("请上传图片！");
+            }
+        });
+        $('#btnZoomIn').on('click', function () {
+            cropper.zoomIn();
+        });
+        $('#btnZoomOut').on('click', function () {
+            cropper.zoomOut();
+        });
+        $('#pic_submit').on('click', function () {
+            $(".close").trigger('click');
+            var img_path = $("#img_submit").attr("src");
+            if( $.trim(img_path) ){
+                $("#img_preview").attr("src",img_path);
+                $("#avatar_path").val(img_path);
+            }
+            //console.log( $("#img_submit").attr("src") );
+        });
+</script>
